@@ -38,8 +38,17 @@ function isPositive(number) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  let ans;
+  if (a > b && a > c) {
+    ans = a;
+  } else if (b > c && b > a) {
+    ans = b;
+  } else {
+    ans = c;
+  }
+
+  return ans;
 }
 
 /**
@@ -174,8 +183,14 @@ function isPalindrome(str) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+
+  return -1;
 }
 
 /**
@@ -193,8 +208,15 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const strNum = String(num);
+  for (let i = 0; i < strNum.length; i += 1) {
+    if (digit === +strNum[i]) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 /**
@@ -254,8 +276,14 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const newMatrix = [[], [], []];
+  for (let i = 0; i < 3; i += 1) {
+    for (let j = 0; j < 3; j += 1) {
+      newMatrix[j][2 - i] = matrix[i][j];
+    }
+  }
+  return newMatrix;
 }
 
 /**
