@@ -118,8 +118,29 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let x = num;
+  let word = '';
+  while (x > 0) {
+    if (x >= 10) {
+      word += 'X';
+      x -= 10;
+    } else if (x === 9) {
+      word += 'IX';
+      x -= 9;
+    } else if (x >= 5) {
+      word += 'V';
+      x -= 5;
+    } else if (x === 4) {
+      word += 'IV';
+      x -= 4;
+    } else {
+      word += 'I';
+      x -= 1;
+    }
+  }
+
+  return word;
 }
 
 /**
@@ -232,8 +253,14 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let index = -1;
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i] > arr[i + 1] && arr[i] > arr[i - 1]) {
+      index = i;
+    }
+  }
+  return index;
 }
 
 /**
@@ -277,10 +304,15 @@ function getSpiralMatrix(/* size */) {
  *  ]                 ]
  */
 function rotateMatrix(matrix) {
-  const newMatrix = [[], [], []];
-  for (let i = 0; i < 3; i += 1) {
-    for (let j = 0; j < 3; j += 1) {
-      newMatrix[j][2 - i] = matrix[i][j];
+  let arr = [];
+  for (let x = 0; x < matrix.length; x += 1) {
+    const line = [...matrix[x]];
+    arr = [...arr, line];
+  }
+  const newMatrix = matrix;
+  for (let i = 0; i < matrix.length; i += 1) {
+    for (let j = 0; j < matrix.length; j += 1) {
+      newMatrix[j][matrix.length - 1 - i] = arr[i][j];
     }
   }
   return newMatrix;
@@ -321,8 +353,23 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let word = str;
+  let even = '';
+  let odd = '';
+  for (let i = 0; i < iterations; i += 1) {
+    for (let j = 0; j < str.length; j += 1) {
+      if (j % 2 === 0) {
+        even += word[j];
+      } else {
+        odd += word[j];
+      }
+    }
+    word = even + odd;
+    even = '';
+    odd = '';
+  }
+  return word;
 }
 
 /**
