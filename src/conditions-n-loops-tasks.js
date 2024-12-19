@@ -298,13 +298,24 @@ function isContainNumber(num, digit) {
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
 function getBalanceIndex(arr) {
-  let index = -1;
-  for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i] > arr[i + 1] && arr[i] > arr[i - 1]) {
-      index = i;
+  if (arr.length === 0) {
+    return -1;
+  }
+  for (let i = 1; i < arr.length - 1; i += 1) {
+    let counterStart = 0;
+    let counterEnd = 0;
+    for (let x = 0; x < i; x += 1) {
+      counterStart += arr[x];
+    }
+    for (let x = i + 1; x < arr.length; x += 1) {
+      counterEnd += arr[x];
+    }
+    if (counterStart === counterEnd) {
+      return i;
     }
   }
-  return index;
+
+  return -1;
 }
 
 /**
