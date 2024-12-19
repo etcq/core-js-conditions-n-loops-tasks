@@ -441,9 +441,9 @@ function sortByAsc(/* arr */) {
  */
 function shuffleChar(str, iterations) {
   let word = str;
-  let even = '';
-  let odd = '';
   for (let i = 0; i < iterations; i += 1) {
+    let even = '';
+    let odd = '';
     for (let j = 0; j < str.length; j += 1) {
       if (j % 2 === 0) {
         even += word[j];
@@ -452,8 +452,6 @@ function shuffleChar(str, iterations) {
       }
     }
     word = even + odd;
-    even = '';
-    odd = '';
   }
   return word;
 }
